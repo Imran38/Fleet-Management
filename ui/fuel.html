@@ -1,0 +1,226 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Fuel Management</title>
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha3/dist/css/bootstrap.min.css" rel="stylesheet">
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons/font/bootstrap-icons.css" rel="stylesheet">
+  <link rel="icon" type="image/x-icon" href="/favicon.png">
+  <link href="./css/styles.css" rel="stylesheet">
+</head>
+
+<body>
+  <div class="container-fluid">
+    <div class="row">
+      <!-- Sidebar navigation menu -->
+      <div class="col-md-3 bg-light vh-100 sidebar">
+        <div class="d-flex align-items-center">
+          <img src="/logo.png" alt="Fleet Management Logo" class="me-2" style="width: 40px; height: 40px;">
+          <h4 class="mt-3" style="cursor: pointer;" onclick="location.href='./index.html';">Fleet Pro</h4>
+        </div>
+        <ul class="list-group list-group-flush">
+          <li class="list-group-item">
+            <a href="trips.html" class="text-decoration-none">
+              <i class="bi bi-compass"></i> Trips
+            </a>
+          </li>
+          <li class="list-group-item">
+            <a href="billing.html" class="text-decoration-none">
+              <i class="bi bi-receipt"></i> Billing
+            </a>
+          </li>
+          <li class="list-group-item">
+            <a href="routes.html" class="text-decoration-none">
+              <i class="bi bi-map"></i> Routes
+            </a>
+          </li>
+          <li class="list-group-item active">
+            <a href="fuel.html" class="text-decoration-none">
+              <i class="bi bi-fuel-pump"></i> Fuel Management
+            </a>
+          </li>
+          <li class="list-group-item">
+            <a href="dispatch.html" class="text-decoration-none">
+              <i class="bi bi-truck"></i> Dispatch Management
+            </a>
+          </li>
+          <li class="list-group-item">
+            <a href="drivers.html" class="text-decoration-none">
+              <i class="bi bi-person"></i> Drivers
+            </a>
+          </li>
+          <li class="list-group-item">
+            <a href="vehicles.html" class="text-decoration-none">
+              <i class="bi bi-car-front"></i> Vehicles
+            </a>
+          </li>
+          <li class="list-group-item">
+            <a href="insurance.html" class="text-decoration-none">
+              <i class="bi bi-shield-check"></i> Insurance
+            </a>
+          </li>
+          <li class="list-group-item">
+            <a href="compliance.html" class="text-decoration-none">
+              <i class="bi bi-check-circle"></i> Compliance
+            </a>
+          </li>
+          <li class="list-group-item">
+            <a href="maintenance.html" class="text-decoration-none">
+              <i class="bi bi-tools"></i> Maintenance
+            </a>
+          </li>
+          <li class="list-group-item">
+            <a href="inventory.html" class="text-decoration-none">
+              <i class="bi bi-box"></i> Inventory
+            </a>
+          </li>
+          <li class="list-group-item">
+            <a href="customers.html" class="text-decoration-none">
+              <i class="bi bi-people"></i> Customer Management
+            </a>
+          </li>
+          <li class="list-group-item">
+            <a href="reporting.html" class="text-decoration-none">
+              <i class="bi bi-graph-up"></i> Reporting
+            </a>
+          </li>
+          <li class="list-group-item">
+            <a href="analytics.html" class="text-decoration-none">
+              <i class="bi bi-bar-chart"></i> Fleet Analytics
+            </a>
+          </li>
+          <li class="list-group-item">
+            <a href="users.html" class="text-decoration-none">
+              <i class="bi bi-person-badge"></i> User Management
+            </a>
+          </li>
+        </ul>
+      </div>
+
+      <!-- Main content -->
+      <div class="col-md-9">
+        <div class="container mt-3">
+          <h1>Fuel Management</h1>
+
+          <!-- Toggle Add Fuel Form -->
+          <div class="d-flex justify-content-end">
+            <button id="toggleFormButton" class="btn btn-primary" onclick="toggleForm()">Add Fuel Record</button>
+          </div>
+          <!-- Form to capture and edit fuel data -->
+          <form id="fuelForm" enctype="multipart/form-data" onsubmit="handleFormSubmit(event)"
+            class="mt-3 d-none form-container">
+            <div class="row">
+              <div class="col-md-4 mb-3">
+                <label for="recordId" class="form-label">Record ID</label>
+                <input type="text" id="recordId" class="form-control" required>
+              </div>
+              <div class="col-md-4 mb-3">
+                <label for="vehicleId" class="form-label">Vehicle ID</label>
+                <input type="text" id="vehicleId" class="form-control" required>
+              </div>
+              <div class="col-md-4 mb-3">
+                <label for="driverId" class="form-label">Driver ID</label>
+                <input type="text" id="driverId" class="form-control" required>
+              </div>
+              <div class="col-md-4 mb-3">
+                <label for="fuelType" class="form-label">Fuel Type</label>
+                <select id="fuelType" class="form-select" required>
+                  <option value="Diesel">Diesel</option>
+                  <option value="Petrol">Petrol</option>
+                  <option value="CNG">CNG</option>
+                  <option value="Electric">Electric</option>
+                  <option value="Other">Other</option>
+                </select>
+              </div>
+              <div class="col-md-4 mb-3">
+                <label for="fuelQuantity" class="form-label">Fuel Quantity</label>
+                <input type="text" id="fuelQuantity" class="form-control" required>
+              </div>
+              <div class="col-md-4 mb-3">
+                <label for="cost" class="form-label">Cost</label>
+                <input type="number" id="cost" class="form-control" required>
+              </div>
+              <div class="col-md-4 mb-3">
+                <label for="paymentType" class="form-label">Payment Type</label>
+                <select id="paymentType" class="form-select" required>
+                  <option value="Cash">Cash</option>
+                  <option value="Credit Card">Credit Card</option>
+                  <option value="Online Transfer">Online Transfer</option>
+                  <option value="Other">Other</option>
+                </select>
+              </div>
+              <div class="col-md-4 mb-3">
+                <label for="receiptNumber" class="form-label">Receipt Number</label>
+                <input type="text" id="receiptNumber" class="form-control" required>
+              </div>
+              <div class="col-md-4 mb-3">
+                <label for="tripId" class="form-label">Trip ID</label>
+                <input type="text" id="tripId" class="form-control">
+              </div>
+              <div class="col-md-4 mb-3">
+                <label for="date" class="form-label">Date</label>
+                <input type="date" id="date" class="form-control" required>
+              </div>
+              <div class="col-md-4 mb-3">
+                <label for="location" class="form-label">Location</label>
+                <input type="text" id="location" class="form-control">
+              </div>
+              <div class="col-md-12 mb-3">
+                <label for="notes" class="form-label">Notes</label>
+                <textarea id="notes" class="form-control" rows="3"></textarea>
+              </div>
+              <div class="col-md-4 mb-3">
+                <label for="receiptImage" class="form-label">Receipt Image</label>
+                <input type="file" id="receiptImage" class="form-control">
+              </div>
+              <div class="col-md-12 mb-3" id="receiptPreview" style="display: none;">
+                <label class="form-label">Receipt Preview</label>
+                <img id="previewImage" src="" alt="Receipt Preview" class="img-fluid rounded">
+              </div>
+            </div>
+            <div class="d-flex justify-content-end">
+              <button type="submit" class="btn btn-primary">Submit</button>
+            </div>
+          </form>
+
+
+          <!-- Table to display fuel data -->
+          <div class="mt-5">
+            <h3>Fuel History</h3>
+            <div class="form-container">
+              <table class="table table-striped" id="fuelTable">
+                <thead>
+                  <tr>
+                    <th onclick="sortTable('recordId')">Record ID</th>
+                    <th onclick="sortTable('vehicleId')">Vehicle ID</th>
+                    <th onclick="sortTable('driverId')">Driver ID</th>
+                    <th onclick="sortTable('fuelType')">Fuel Type</th>
+                    <th onclick="sortTable('fuelQuantity')">Quantity</th>
+                    <th onclick="sortTable('cost')">Cost</th>
+                    <th onclick="sortTable('date')">Date</th>
+                    <th onclick="sortTable('location')">Location</th>
+                    <th>Actions</th>
+                  </tr>
+                </thead>
+                <tbody id="fuelList">
+                  <!-- Table rows will be populated dynamically -->
+                </tbody>
+              </table>
+              <div class="d-flex justify-content-between">
+                <button class="btn btn-secondary" onclick="prevPage()">Previous</button>
+                <span id="pageInfo"></span>
+                <button class="btn btn-secondary" onclick="nextPage()">Next</button>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <script src="fuel.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha3/dist/js/bootstrap.bundle.min.js"></script>
+</body>
+
+</html>

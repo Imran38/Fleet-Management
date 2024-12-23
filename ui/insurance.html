@@ -1,0 +1,242 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Insurance Management</title>
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha3/dist/css/bootstrap.min.css" rel="stylesheet">
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons/font/bootstrap-icons.css" rel="stylesheet">
+  <link rel="icon" type="image/x-icon" href="/favicon.png">
+  <link href="./css/styles.css" rel="stylesheet">
+</head>
+
+<body>
+  <div class="container-fluid">
+    <div class="row">
+      <!-- Sidebar navigation menu -->
+      <div class="col-md-3 bg-light vh-100 sidebar">
+        <div class="d-flex align-items-center">
+          <img src="/logo.png" alt="Fleet Management Logo" class="me-2" style="width: 40px; height: 40px;">
+          <h4 class="mt-3" style="cursor: pointer;" onclick="location.href='./index.html';">Fleet Pro</h4>
+        </div>
+        <ul class="list-group list-group-flush">
+          <li class="list-group-item active">
+            <a href="trips.html" class="text-decoration-none">
+              <i class="bi bi-compass"></i> Trips
+            </a>
+          </li>
+          <li class="list-group-item">
+            <a href="billing.html" class="text-decoration-none">
+              <i class="bi bi-receipt"></i> Billing
+            </a>
+          </li>
+          <li class="list-group-item">
+            <a href="routes.html" class="text-decoration-none">
+              <i class="bi bi-map"></i> Routes
+            </a>
+          </li>
+          <li class="list-group-item">
+            <a href="fuel.html" class="text-decoration-none">
+              <i class="bi bi-fuel-pump"></i> Fuel Management
+            </a>
+          </li>
+          <li class="list-group-item">
+            <a href="dispatch.html" class="text-decoration-none">
+              <i class="bi bi-truck"></i> Dispatch Management
+            </a>
+          </li>
+          <li class="list-group-item">
+            <a href="drivers.html" class="text-decoration-none">
+              <i class="bi bi-person"></i> Drivers
+            </a>
+          </li>
+          <li class="list-group-item">
+            <a href="vehicles.html" class="text-decoration-none">
+              <i class="bi bi-car-front"></i> Vehicles
+            </a>
+          </li>
+          <li class="list-group-item active">
+            <a href="insurance.html" class="text-decoration-none">
+              <i class="bi bi-shield-check"></i> Insurance
+            </a>
+          </li>
+          <li class="list-group-item">
+            <a href="compliance.html" class="text-decoration-none">
+              <i class="bi bi-check-circle"></i> Compliance
+            </a>
+          </li>
+          <li class="list-group-item">
+            <a href="maintenance.html" class="text-decoration-none">
+              <i class="bi bi-tools"></i> Maintenance
+            </a>
+          </li>
+          <li class="list-group-item">
+            <a href="inventory.html" class="text-decoration-none">
+              <i class="bi bi-box"></i> Inventory
+            </a>
+          </li>
+          <li class="list-group-item">
+            <a href="customers.html" class="text-decoration-none">
+              <i class="bi bi-people"></i> Customer Management
+            </a>
+          </li>
+          <li class="list-group-item">
+            <a href="reporting.html" class="text-decoration-none">
+              <i class="bi bi-graph-up"></i> Reporting
+            </a>
+          </li>
+          <li class="list-group-item">
+            <a href="analytics.html" class="text-decoration-none">
+              <i class="bi bi-bar-chart"></i> Fleet Analytics
+            </a>
+          </li>
+          <li class="list-group-item">
+            <a href="users.html" class="text-decoration-none">
+              <i class="bi bi-person-badge"></i> User Management
+            </a>
+          </li>
+        </ul>
+      </div>
+
+      <!-- Main content -->
+      <div class="col-md-9">
+        <div class="container mt-3">
+          <h1>Insurance Management</h1>
+
+          <!-- Toggle Add Insurance Form -->
+          <div class="d-flex justify-content-end">
+            <button id="toggleFormButton" class="btn btn-primary" onclick="toggleForm()">Add Insurance</button>
+          </div>
+          <!-- Form to capture and edit insurance data -->
+          <form id="insuranceForm" onsubmit="handleFormSubmit(event)" class="mt-3 d-none form-container">
+            <div class="row">
+              <div class="col-md-4 mb-3">
+                <label for="insuranceId" class="form-label">Insurance ID</label>
+                <input type="text" id="insuranceId" class="form-control" required>
+              </div>
+              <div class="col-md-4 mb-3">
+                <label for="vehicleId" class="form-label">Vehicle ID</label>
+                <input type="text" id="vehicleId" class="form-control" required>
+              </div>
+              <div class="col-md-4 mb-3">
+                <label for="provider" class="form-label">Provider</label>
+                <input type="text" id="provider" class="form-control" required>
+              </div>
+              <div class="col-md-4 mb-3">
+                <label for="policyNumber" class="form-label">Policy Number</label>
+                <input type="text" id="policyNumber" class="form-control" required>
+              </div>
+              <div class="col-md-4 mb-3">
+                <label for="coverageDetails" class="form-label">Coverage Details</label>
+                <input type="text" id="coverageDetails" class="form-control">
+              </div>
+              <div class="col-md-4 mb-3">
+                <label for="startDate" class="form-label">Start Date</label>
+                <input type="date" id="startDate" class="form-control" required>
+              </div>
+              <div class="col-md-4 mb-3">
+                <label for="expiryDate" class="form-label">Expiry Date</label>
+                <input type="date" id="expiryDate" class="form-control" required>
+              </div>
+              <div class="col-md-4 mb-3">
+                <label for="premiumAmount" class="form-label">Premium Amount</label>
+                <input type="number" id="premiumAmount" class="form-control" required>
+              </div>
+              <div class="col-md-4 mb-3">
+                <label for="insuranceType" class="form-label">Insurance Type</label>
+                <select id="insuranceType" class="form-select" required>
+                  <option value="Third Party">Third Party</option>
+                  <option value="Own Damage">Own Damage</option>
+                </select>
+              </div>
+              <div class="col-md-4 mb-3">
+                <label for="coverageLimit" class="form-label">Coverage Limit</label>
+                <input type="number" id="coverageLimit" class="form-control" required>
+              </div>
+              <div class="col-md-4 mb-3">
+                <label for="claimStatus" class="form-label">Claim Status</label>
+                <select id="claimStatus" class="form-select" required>
+                  <option value="No Claims">No Claims</option>
+                  <option value="Pending">Pending</option>
+                  <option value="Settled">Settled</option>
+                </select>
+              </div>
+              <!-- Agency Contact Details -->
+              <h5 class="mt-4">Agency Contact</h5>
+              <div class="col-md-4 mb-3">
+                <label for="agencyName" class="form-label">Agency Name</label>
+                <input type="text" id="agencyName" class="form-control">
+              </div>
+              <div class="col-md-4 mb-3">
+                <label for="agencyPhone" class="form-label">Agency Phone</label>
+                <input type="text" id="agencyPhone" class="form-control">
+              </div>
+              <div class="col-md-4 mb-3">
+                <label for="agencyEmail" class="form-label">Agency Email</label>
+                <input type="email" id="agencyEmail" class="form-control">
+              </div>
+              <div class="col-md-12 mb-3">
+                <label for="agencyAddress" class="form-label">Agency Address</label>
+                <textarea id="agencyAddress" class="form-control" rows="2"></textarea>
+              </div>
+              <!-- Insurance Contact Details -->
+              <h5 class="mt-4">Insurance Contact</h5>
+              <div class="col-md-4 mb-3">
+                <label for="insuranceContactName" class="form-label">Contact Name</label>
+                <input type="text" id="insuranceContactName" class="form-control">
+              </div>
+              <div class="col-md-4 mb-3">
+                <label for="insuranceContactPhone" class="form-label">Contact Phone</label>
+                <input type="text" id="insuranceContactPhone" class="form-control">
+              </div>
+              <div class="col-md-4 mb-3">
+                <label for="insuranceContactEmail" class="form-label">Contact Email</label>
+                <input type="email" id="insuranceContactEmail" class="form-control">
+              </div>
+              <div class="col-md-12 mb-3">
+                <label for="insuranceContactAddress" class="form-label">Contact Address</label>
+                <textarea id="insuranceContactAddress" class="form-control" rows="2"></textarea>
+              </div>
+            </div>
+            <div class="d-flex justify-content-end">
+              <button type="submit" class="btn btn-primary">Submit</button>
+            </div>
+          </form>
+
+          <!-- Table to display insurance data -->
+          <div class="mt-5">
+            <h3>Insurance List</h3>
+            <div class="form-container">
+              <table class="table table-striped" id="insuranceTable">
+                <thead>
+                  <tr>
+                    <th onclick="sortTable('insuranceId')">Insurance ID</th>
+                    <th onclick="sortTable('vehicleId')">Vehicle ID</th>
+                    <th onclick="sortTable('provider')">Provider</th>
+                    <th onclick="sortTable('policyNumber')">Policy Number</th>
+                    <th onclick="sortTable('expiryDate')">Expiry Date</th>
+                    <th onclick="sortTable('premiumAmount')">Premium Amount</th>
+                    <th>Actions</th>
+                  </tr>
+                </thead>
+                <tbody id="insuranceList">
+                  <!-- Table rows will be populated dynamically -->
+                </tbody>
+              </table>
+              <div class="d-flex justify-content-between">
+                <button class="btn btn-secondary" onclick="prevPage()">Previous</button>
+                <span id="pageInfo"></span>
+                <button class="btn btn-secondary" onclick="nextPage()">Next</button>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <script src="insurance.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha3/dist/js/bootstrap.bundle.min.js"></script>
+</body>
+
+</html>

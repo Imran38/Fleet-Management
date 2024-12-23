@@ -1,0 +1,280 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Used Car Sales</title>
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha3/dist/css/bootstrap.min.css" rel="stylesheet">
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons/font/bootstrap-icons.css" rel="stylesheet">
+  <link href="./css/styles.css" rel="stylesheet">
+  <link rel="icon" type="image/x-icon" href="/favicon.png">
+</head>
+<body>
+  <div class="container-fluid">
+    <div class="row">
+      <!-- Sidebar navigation menu -->
+      <div class="col-md-3 bg-light vh-100 sidebar">
+        <div class="d-flex align-items-center">
+          <img src="/logo.png" alt="Fleet Management Logo" class="me-2" style="width: 40px; height: 40px;">
+          <h4 class="mt-3" style="cursor: pointer;" onclick="location.href='./index.html';">Fleet Pro</h4>
+        </div>
+        <ul class="list-group list-group-flush">
+          <li class="list-group-item"><a href="vehicles.html" class="text-decoration-none"><i class="bi bi-car-front"></i> Vehicles</a></li>
+          <li class="list-group-item active"><a href="usedcarsales.html" class="text-decoration-none"><i class="bi bi-cart"></i> Used Car Sales</a></li>
+          <!-- Add more navigation items as needed -->
+        </ul>
+      </div>
+
+      <!-- Main content -->
+      <div class="col-md-9">
+        <div class="container mt-3">
+          <h1>Used Car Sales</h1>
+
+          <!-- Toggle Add/Edit Form -->
+          <div class="d-flex justify-content-end">
+            <button id="toggleFormButton" class="btn btn-primary me-2" onclick="toggleForm()">Add Listing</button>
+          </div>
+
+          <!-- Form to capture and edit data -->
+          <form id="usedCarSalesForm" onsubmit="handleFormSubmit(event)" class="mt-3 d-none form-container">
+            <div class="row">
+              <div class="col-md-4 mb-3">
+                <label for="vehicleId" class="form-label">Vehicle ID</label>
+                <input type="text" id="vehicleId" class="form-control" required>
+              </div>
+              <div class="col-md-4 mb-3">
+                <label for="make" class="form-label">Make</label>
+                <input type="text" id="make" class="form-control" required>
+              </div>
+              <div class="col-md-4 mb-3">
+                <label for="model" class="form-label">Model</label>
+                <input type="text" id="model" class="form-control" required>
+              </div>
+              <h4>Vehicle Details</h4>
+              <div class="col-md-4 mb-3">
+                <label for="type" class="form-label">Vehicle Type</label>
+                <select id="type" class="form-select" required>
+                  <option value="Sedan">Sedan</option>
+                  <option value="SUV">SUV</option>
+                  <option value="Truck">Truck</option>
+                  <option value="Hatchback">Hatchback</option>
+                  <option value="Van">Van</option>
+                  <option value="Other">Other</option>
+                </select>
+              </div>
+              <div class="col-md-4 mb-3">
+                <label for="odometer" class="form-label">Odometer (km)</label>
+                <input type="number" id="odometer" class="form-control" required>
+              </div>
+              <div class="col-md-4 mb-3">
+                <label for="fuelType" class="form-label">Fuel Type</label>
+                <select id="fuelType" class="form-select" required>
+                  <option value="Petrol">Petrol</option>
+                  <option value="Diesel">Diesel</option>
+                  <option value="Electric">Electric</option>
+                  <option value="Hybrid">Hybrid</option>
+                  <option value="CNG">CNG</option>
+                  <option value="Other">Other</option>
+                </select>
+              </div>
+              <div class="col-md-4 mb-3">
+                <label for="transmission" class="form-label">Transmission</label>
+                <select id="transmission" class="form-select" required>
+                  <option value="Automatic">Automatic</option>
+                  <option value="Manual">Manual</option>
+                </select>
+              </div>
+              <div class="col-md-4 mb-3">
+                <label for="year" class="form-label">Year</label>
+                <input type="number" id="year" class="form-control" required>
+              </div>
+              <div class="col-md-4 mb-3">
+                <label for="color" class="form-label">Color</label>
+                <input type="text" id="color" class="form-control">
+              </div>              
+              <div class="col-md-4 mb-3">
+                <label for="mileage" class="form-label">Mileage</label>
+                <input type="number" id="mileage" class="form-control" required>
+              </div>              
+              <div class="col-md-4 mb-3">
+                <label for="engineCapacity" class="form-label">Engine Capacity (cc)</label>
+                <input type="number" id="engineCapacity" class="form-control">
+              </div>
+              <div class="col-md-4 mb-3">
+                <label for="seatingCapacity" class="form-label">Seating Capacity</label>
+                <input type="number" id="seatingCapacity" class="form-control">
+              </div>
+              <div class="col-md-4 mb-3">
+                <label for="registrationState" class="form-label">Registration State</label>
+                <input type="text" id="registrationState" class="form-control">
+              </div>
+              <div class="col-md-4 mb-3">
+                <label for="condition" class="form-label">Condition</label>
+                <select id="condition" class="form-select" required>
+                  <option value="New">New</option>
+                  <option value="Used">Used</option>
+                  <option value="Certified Pre-Owned">Certified Pre-Owned</option>
+                </select>
+              </div>
+              <div class="col-md-4 mb-3">
+                <label for="tyreCondition" class="form-label">Tyre Condition</label>
+                <select id="tyreCondition" class="form-select">
+                  <option value="New">New</option>
+                  <option value="Used">Used</option>
+                </select>
+              </div>
+              <div class="col-md-4 mb-3">
+                <label for="batteryCondition" class="form-label">Battery Condition</label>
+                <select id="batteryCondition" class="form-select">
+                  <option value="New">New</option>
+                  <option value="Old">Old</option>
+                </select>
+              </div>
+              <div class="col-md-4 mb-3">
+                <label for="accidental" class="form-label">Accidental</label>
+                <select id="accidental" class="form-select">
+                  <option value="true">Yes</option>
+                  <option value="false">No</option>
+                </select>
+              </div>
+              <div class="col-md-4 mb-3">
+                <label for="serviceHistory" class="form-label">Service History</label>
+                <select id="serviceHistory" class="form-select">
+                  <option value="true">Available</option>
+                  <option value="false">Not Available</option>
+                </select>
+              </div>
+              <div class="col-md-4 mb-3">
+                <label for="gpsInstalled" class="form-label">GPS Installed</label>
+                <select id="gpsInstalled" class="form-select">
+                  <option value="true">Yes</option>
+                  <option value="false">No</option>
+                </select>
+              </div>
+              <div class="row">
+                <div class="col-md-12 mb-3">
+                  <label for="features" class="form-label">Additional Features</label>
+                  <textarea id="features" class="form-control" placeholder="Enter features separated by commas (e.g., GPS, AC, Sunroof)"></textarea>
+                </div>
+              </div>
+              <h4>Seller Information</h4>
+              <div class="row">
+                <div class="col-md-4 mb-3">
+                  <label for="sellerId" class="form-label">Seller ID</label>
+                  <input type="text" id="sellerId" class="form-control" required>
+                </div>
+                <div class="col-md-4 mb-3">
+                  <label for="sellerName" class="form-label">Seller Name</label>
+                  <input type="text" id="sellerName" class="form-control" required>
+                </div>
+                <div class="col-md-4 mb-3">
+                  <label for="contactNumber" class="form-label">Contact Number</label>
+                  <input type="text" id="contactNumber" class="form-control" required>
+                </div>
+                <div class="col-md-4 mb-3">
+                  <label for="email" class="form-label">Email</label>
+                  <input type="email" id="email" class="form-control" placeholder="Enter email">
+                </div>
+                <div class="col-md-4 mb-3">
+                  <label for="address" class="form-label">Address</label>
+                  <input id="address" class="form-control" placeholder="Enter address"></input>
+                </div>
+              </div>
+              <div class="col-md-4 mb-3">
+                <label for="price" class="form-label">Price</label>
+                <input type="number" id="price" class="form-control" placeholder="Enter price" required>
+              </div>
+              <div class="col-md-4 mb-3">
+                <label for="negotiable" class="form-label">Negotiable</label>
+                <select id="negotiable" class="form-select">
+                  <option value="true">Yes</option>
+                  <option value="false">No</option>
+                </select>
+              </div>              
+                <div class="col-md-4 mb-3">
+                  <label for="insuranceIncluded" class="form-label">Insurance Included</label>
+                  <select id="insuranceIncluded" class="form-select">
+                    <option value="true">Yes</option>
+                    <option value="false">No</option>
+                  </select>
+                </div>
+              
+              <div class="row">
+                <div class="col-md-4 mb-3">
+                  <label for="availabilityStatus" class="form-label">Availability Status</label>
+                  <select id="availabilityStatus" class="form-select">
+                    <option value="Available">Available</option>
+                    <option value="Sold">Sold</option>
+                  </select>
+                </div>
+                <div class="col-md-4 mb-3">
+                  <label for="listedDate" class="form-label">Listed Date</label>
+                  <input type="date" id="listedDate" class="form-control">
+                </div>
+                <div class="col-md-4 mb-3">
+                  <label for="soldDate" class="form-label">Sold Date</label>
+                  <input type="date" id="soldDate" class="form-control">
+                </div>
+              </div>
+              <div class="row">
+                <div class="col-md-12 mb-3">
+                  <label for="notes" class="form-label">Notes</label>
+                  <textarea id="notes" class="form-control" placeholder="Enter any additional notes"></textarea>
+                </div>
+              </div>
+              <div class="row">
+                <div class="col-md-4 mb-3">
+                  <label for="document1" class="form-label">Document 1</label>
+                  <input type="file" id="document1" name="document1" class="form-control" accept=".pdf,.doc,.docx">
+                </div>
+                <div class="col-md-4 mb-3">
+                  <label for="document2" class="form-label">Document 2</label>
+                  <input type="file" id="document2" name="document2" class="form-control" accept=".pdf,.doc,.docx">
+                </div>
+              </div>
+              <div class="col-md-12 mb-3">
+                <label for="description" class="form-label">Description</label>
+                <textarea id="description" class="form-control" rows="2"></textarea>
+              </div>
+            </div>
+            <div class="d-flex justify-content-end">
+              <button type="submit" class="btn btn-primary me-2">Submit</button>
+            </div>
+          </form>
+
+          <!-- Table to display data -->
+          <div class="mt-5">
+            <h3>Car Listings</h3>
+            <div class="form-container">
+              <table class="table table-striped" id="usedCarSalesTable">
+                <thead>
+                  <tr>
+                    <th onclick="sortTable('vehicleId')">Vehicle ID</th>
+                    <th onclick="sortTable('make')">Make</th>
+                    <th onclick="sortTable('model')">Model</th>
+                    <th onclick="sortTable('year')">Year</th>
+                    <th onclick="sortTable('price')">Price</th>
+                    <th onclick="sortTable('condition')">Condition</th>
+                    <th>Actions</th>
+                  </tr>
+                </thead>
+                <tbody id="usedCarSalesList">
+                  <!-- Table rows will be populated dynamically -->
+                </tbody>
+              </table>
+              <div class="d-flex justify-content-between">
+                <button class="btn btn-secondary" onclick="prevPage()">Previous</button>
+                <span id="pageInfo"></span>
+                <button class="btn btn-secondary" onclick="nextPage()">Next</button>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <script src="usedcarsales.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha3/dist/js/bootstrap.bundle.min.js"></script>
+</body>
+</html>

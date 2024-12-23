@@ -1,0 +1,356 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Vehicles</title>
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha3/dist/css/bootstrap.min.css" rel="stylesheet">
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons/font/bootstrap-icons.css" rel="stylesheet">
+  <link href="./css/styles.css" rel="stylesheet">
+  <link rel="icon" type="image/x-icon" href="/favicon.png">
+</head>
+<body>
+  <div class="container-fluid">
+    <div class="row">
+      <!-- Sidebar navigation menu -->
+      <div class="col-md-3 bg-light vh-100 sidebar">
+        <div class="d-flex align-items-center">
+          <img src="/logo.png" alt="Fleet Management Logo" class="me-2" style="width: 40px; height: 40px;">
+          <h4 class="mt-3" style="cursor: pointer;" onclick="location.href='./index.html';">Fleet Pro</h4>
+        </div>
+        <ul class="list-group list-group-flush">
+          <li class="list-group-item">
+            <a href="trips.html" class="text-decoration-none">
+              <i class="bi bi-compass"></i> Trips
+            </a>
+          </li>
+          <li class="list-group-item">
+            <a href="billing.html" class="text-decoration-none">
+              <i class="bi bi-receipt"></i> Billing
+            </a>
+          </li>
+          <li class="list-group-item">
+            <a href="routes.html" class="text-decoration-none">
+              <i class="bi bi-map"></i> Routes
+            </a>
+          </li>
+          <li class="list-group-item">
+            <a href="fuel.html" class="text-decoration-none">
+              <i class="bi bi-fuel-pump"></i> Fuel Management
+            </a>
+          </li>
+          <li class="list-group-item">
+            <a href="dispatch.html" class="text-decoration-none">
+              <i class="bi bi-truck"></i> Dispatch Management
+            </a>
+          </li>
+          <li class="list-group-item">
+            <a href="drivers.html" class="text-decoration-none">
+              <i class="bi bi-person"></i> Drivers
+            </a>
+          </li>
+          <li class="list-group-item active">
+            <a href="vehicles.html" class="text-decoration-none">
+              <i class="bi bi-car-front"></i> Vehicles
+            </a>
+          </li>
+          <li class="list-group-item">
+            <a href="insurance.html" class="text-decoration-none">
+              <i class="bi bi-shield-check"></i> Insurance
+            </a>
+          </li>
+          <li class="list-group-item">
+            <a href="compliance.html" class="text-decoration-none">
+              <i class="bi bi-check-circle"></i> Compliance
+            </a>
+          </li>
+          <li class="list-group-item">
+            <a href="maintenance.html" class="text-decoration-none">
+              <i class="bi bi-tools"></i> Maintenance
+            </a>
+          </li>
+          <li class="list-group-item">
+            <a href="inventory.html" class="text-decoration-none">
+              <i class="bi bi-box"></i> Inventory
+            </a>
+          </li>
+          <li class="list-group-item">
+            <a href="customers.html" class="text-decoration-none">
+              <i class="bi bi-people"></i> Customer Management
+            </a>
+          </li>
+          <li class="list-group-item">
+            <a href="reporting.html" class="text-decoration-none">
+              <i class="bi bi-graph-up"></i> Reporting
+            </a>
+          </li>
+          <li class="list-group-item">
+            <a href="analytics.html" class="text-decoration-none">
+              <i class="bi bi-bar-chart"></i> Fleet Analytics
+            </a>
+          </li>
+          <li class="list-group-item">
+            <a href="users.html" class="text-decoration-none">
+              <i class="bi bi-person-badge"></i> User Management
+            </a>
+          </li>
+        </ul>
+      </div>
+
+      <!-- Main content -->
+      <div class="col-md-9">
+        <div class="container mt-3">
+          <h1>Vehicle Management</h1>
+
+          <!-- Toggle Add Vehicle Form -->
+          <div class="d-flex justify-content-end">
+            <button id="toggleFormButton" class="btn btn-primary me-2" onclick="toggleForm()">Add Vehicle</button>
+          </div>
+
+          <!-- Form to capture and edit vehicle data -->
+          <form id="vehicleForm" enctype="multipart/form-data" onsubmit="handleFormSubmit(event)" class="mt-3 d-none form-container">
+            <div class="row">
+              <div class="col-md-4 mb-3">
+                <label for="vehicleId" class="form-label">Vehicle ID</label>
+                <input type="text" id="vehicleId" class="form-control" required>
+              </div>
+              <div class="col-md-4 mb-3">
+                <label for="make" class="form-label">Make</label>
+                <input type="text" id="make" class="form-control" required>
+              </div>
+              <div class="col-md-4 mb-3">
+                <label for="model" class="form-label">Model</label>
+                <input type="text" id="model" class="form-control" required>
+              </div>
+              <div class="col-md-4 mb-3">
+                <label for="year" class="form-label">Year</label>
+                <input type="number" id="year" class="form-control" required>
+              </div>
+              <div class="col-md-4 mb-3">
+                <label for="vin" class="form-label">VIN</label>
+                <input type="text" id="vin" class="form-control" required>
+              </div>
+              <div class="col-md-4 mb-3">
+                <label for="licensePlate" class="form-label">License Plate</label>
+                <input type="text" id="licensePlate" class="form-control" required>
+              </div>
+              <div class="col-md-4 mb-3">
+                <label for="ownershipType" class="form-label">Ownership Type</label>
+                <input type="text" id="ownershipType" class="form-control" required>
+              </div>
+              <div class="col-md-4 mb-3">
+                <label for="status" class="form-label">Status</label>
+                <input type="text" id="status" class="form-control" required>
+              </div>
+              <div class="col-md-4 mb-3">
+                <label for="odometer" class="form-label">Odometer</label>
+                <input type="number" id="odometer" class="form-control">
+              </div>
+              <div class="col-md-4 mb-3">
+                <label for="ownerName" class="form-label">Owner Name</label>
+                <input type="text" id="ownerName" class="form-control">
+              </div>
+              <div class="col-md-4 mb-3">
+                <label for="fuelType" class="form-label">Fuel Type</label>
+                <input type="text" id="fuelType" class="form-control">
+              </div>
+              <div class="col-md-4 mb-3">
+                <label for="mileage" class="form-label">Mileage</label>
+                <input type="number" id="mileage" class="form-control">
+              </div>
+              <div class="mb-3">
+                <label for="image1" class="form-label">Image 1</label>
+                <input type="file" id="image1" name="image1" class="form-control" accept="image/*">
+              </div>
+              <div class="mb-3">
+                <label for="image2" class="form-label">Image 2</label>
+                <input type="file" id="image2" name="image2" class="form-control" accept="image/*">
+              </div>
+              <div class="mb-3">
+                <label for="image3" class="form-label">Image 3</label>
+                <input type="file" id="image3" name="image3" class="form-control" accept="image/*">
+              </div>
+            </div>
+
+            <div class="accordion mb-3" id="additionalPropertiesAccordion">
+              <div class="accordion-item">
+                <h2 class="accordion-header" id="headingAdditionalProperties">
+                  <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#additionalProperties" aria-expanded="false" aria-controls="additionalProperties">
+                    Additional Properties
+                  </button>
+                </h2>
+                <div id="additionalProperties" class="accordion-collapse collapse" aria-labelledby="headingAdditionalProperties">
+                  <div class="accordion-body">
+                    <div class="row">                      
+                      <div class="col-md-4 mb-3">
+                        <label for="accidental" class="form-label">Accidental</label>
+                        <select id="accidental" class="form-select">
+                          <option value="No">No</option>
+                          <option value="Yes">Yes</option>
+                        </select>
+                      </div>
+                      <div class="col-md-4 mb-3">
+                        <label for="color" class="form-label">Color</label>
+                        <input type="text" id="color" class="form-control">
+                      </div>
+                      <div class="col-md-4 mb-3">
+                        <label for="engineCapacity" class="form-label">Engine Capacity (cc)</label>
+                        <input type="number" id="engineCapacity" class="form-control">
+                      </div>
+                      <div class="col-md-4 mb-3">
+                        <label for="insuranceType" class="form-label">Insurance Type</label>
+                        <select id="insuranceType" class="form-select">
+                          <option value="Comprehensive">Comprehensive</option>
+                          <option value="Third Party">Third Party</option>
+                        </select>
+                      </div>
+                      <div class="col-md-4 mb-3">
+                        <label for="lockSystem" class="form-label">Lock System</label>
+                        <input type="text" id="lockSystem" class="form-control">
+                      </div>
+                      <div class="col-md-4 mb-3">
+                        <label for="makeMonth" class="form-label">Make Month</label>
+                        <input type="text" id="makeMonth" class="form-control">
+                      </div>
+                      <div class="col-md-4 mb-3">
+                        <label for="parkingSensors" class="form-label">Parking Sensors</label>
+                        <select id="parkingSensors" class="form-select">
+                          <option value="Yes">Yes</option>
+                          <option value="No">No</option>
+                        </select>
+                      </div>
+                      <div class="col-md-4 mb-3">
+                        <label for="powerSteering" class="form-label">Power Steering</label>
+                        <select id="powerSteering" class="form-select">
+                          <option value="Yes">Yes</option>
+                          <option value="No">No</option>
+                        </select>
+                      </div>
+                      <div class="col-md-4 mb-3">
+                        <label for="registrationPlace" class="form-label">Registration Place</label>
+                        <input type="text" id="registrationPlace" class="form-control">
+                      </div>
+                      <div class="col-md-4 mb-3">
+                        <label for="finance" class="form-label">Finance</label>
+                        <select id="finance" class="form-select">
+                          <option value="Yes">Yes</option>
+                          <option value="No">No</option>
+                        </select>
+                      </div>
+                      <div class="col-md-4 mb-3">
+                        <label for="tyreCondition" class="form-label">Tyre Condition</label>
+                        <select id="tyreCondition" class="form-select">
+                          <option value="New">New</option>
+                          <option value="Used">Used</option>
+                        </select>
+                      </div>
+                      <div class="col-md-4 mb-3">
+                        <label for="gpsInstalled" class="form-label">GPS Installed</label>
+                        <select id="gpsInstalled" class="form-select">
+                          <option value="Yes">Yes</option>
+                          <option value="No">No</option>
+                        </select>
+                      </div>
+                      <div class="col-md-4 mb-3">
+                        <label for="loadCapacity" class="form-label">Load Capacity (kg)</label>
+                        <input type="text" id="loadCapacity" class="form-control">
+                      </div>
+                      <div class="col-md-4 mb-3">
+                        <label for="serviceHistory" class="form-label">Service History</label>
+                        <select id="serviceHistory" class="form-select">
+                          <option value="Available">Available</option>
+                          <option value="Not Available">Not Available</option>
+                        </select>
+                      </div>
+                      <div class="col-md-4 mb-3">
+                        <label for="seatCapacity" class="form-label">Seat Capacity</label>
+                        <input type="number" id="seatCapacity" class="form-control">
+                      </div>
+                      <div class="col-md-4 mb-3">
+                        <label for="antiTheftDevice" class="form-label">Anti-Theft Device</label>
+                        <select id="antiTheftDevice" class="form-select">
+                          <option value="Yes">Yes</option>
+                          <option value="No">No</option>
+                        </select>
+                      </div>
+                      <div class="col-md-4 mb-3">
+                        <label for="batteryCondition" class="form-label">Battery Condition</label>
+                        <select id="batteryCondition" class="form-select">
+                          <option value="New">New</option>
+                          <option value="Old">Old</option>
+                        </select>
+                      </div>
+                      <div class="col-md-4 mb-3">
+                        <label for="vehicleCertified" class="form-label">Vehicle Certified</label>
+                        <select id="vehicleCertified" class="form-select">
+                          <option value="Yes">Yes</option>
+                          <option value="No">No</option>
+                        </select>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div class="row">
+              <div class="col-md-4 mb-3">
+                <label for="image1" class="form-label">Image 1</label>             
+                <img id="image1Preview" src="" alt="Image 1 Preview" style="display:none; margin-top:10px; max-width:200px; height:auto;">
+              </div>
+              <div class="col-md-4 mb-3">
+                <label for="image2" class="form-label">Image 2</label>              
+                <img id="image2Preview" src="" alt="Image 2 Preview" style="display:none; margin-top:10px; max-width:200px; height:auto;">
+              </div>
+              <div class="col-md-4 mb-3">
+                <label for="image3" class="form-label">Image 3</label>              
+                <img id="image3Preview" src="" alt="Image 3 Preview" style="display:none; margin-top:10px; max-width:200px; height:auto;">
+              </div>
+            </div>
+            <div class="d-flex justify-content-end">
+              <button type="submit" class="btn btn-primary me-2">Submit</button>
+            </div>
+          </form>
+
+          <!-- Table to display vehicle data -->
+          <div class="mt-5">
+            <h3>Vehicle List</h3>  
+            <div class="form-container">       
+            <table class="table table-striped" id="vehicleTable">
+                <thead>
+                  <tr>
+                    <th onclick="sortTable('vehicleId')">Vehicle ID</th>
+                    <th onclick="sortTable('make')">Make</th>
+                    <th onclick="sortTable('model')">Model</th>
+                    <th onclick="sortTable('year')">Year</th>
+                    <th onclick="sortTable('vin')">VIN</th>
+                    <th onclick="sortTable('licensePlate')">License Plate</th>
+                    <th onclick="sortTable('ownershipType')">Ownership Type</th>
+                    <th onclick="sortTable('status')">Status</th>
+                    <th>Actions</th>
+                  </tr>
+                </thead>
+                <tbody id="vehicleList">
+                  <!-- Table rows will be populated dynamically -->
+                </tbody>
+              </table>
+              <div class="d-flex justify-content-between">
+                <button class="btn btn-secondary" onclick="prevPage()">Previous</button>
+                <span id="pageInfo"></span>
+                <button class="btn btn-secondary" onclick="nextPage()">Next</button>
+              </div>
+            </div>
+          </div>               
+        </div>
+        <div class="container mt-3">
+        <div class="d-flex justify-content-end mb-3">
+          <a href="./vehicles/vehicleListView.html" class="btn btn-primary">View All Vehicles</a>
+        </div> 
+        </div>    
+      </div>
+    </div>
+  </div>
+
+  <script src="vehicles.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha3/dist/js/bootstrap.bundle.min.js"></script>
+</body>
+</html>
