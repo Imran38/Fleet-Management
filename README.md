@@ -19,3 +19,4 @@ Application uses json document and uses mongodb to store the database records.
 Initial Checking does not have the full implementation of reports and analytics yet. The implementation of which will also use npm packages.
 
 For customization and implementation, feel free to reachout to me at imran_mydeen@hotmail.com
+![image](https://github.com/user-attachments/assets/1588873a-6d15-48d9-ab23-815a445339fe)
